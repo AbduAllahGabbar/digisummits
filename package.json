@@ -1,0 +1,17 @@
+{
+  "name": "smart_code",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "digisummits": "node digisummits.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "isite": "^2022.3.9",
+    "zklib": "^0.2.11"
+  }
+}

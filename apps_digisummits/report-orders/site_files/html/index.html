@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="report_orders_ui || report_orders_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav class="sitebar" x-import="sitebar/index.html" ng-controller="sitebar"></nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+    </nav>
+
+    <div id="main-layout" class="container loaded">
+        <div class="row">
+            <div class="row" ng-controller="report_orders" x-permissions="login">
+
+
+                <div x-permissions="report_orders_delete || report_orders_manage"
+                    x-import="report-orders/delete_modal.html">
+                </div>
+                <div x-permissions="report_orders_view || report_orders_manage"
+                    x-import="report-orders/view_modal.html"></div>
+                <div x-permissions="report_orders_delete || report_orders_manage"
+                    x-import="report-orders/search_all_modal.html">
+                </div>
+
+
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.report_orders_name## </h1>
+                </div>
+
+                <div class="top-actions">
+
+                    <i-button type="search" x-permissions="report_orders_search || report_orders_manage"
+                        label="##word.search_all##" onclick="site.showModal('#reportOrdersSearchModal')"></i-button>
+                    <i-checkbox class="left" ng-click="getReportOrdersList()" label="##word.under_pricing##"
+                        ng-model="statusId.under_pricing"></i-checkbox>
+                    <i-checkbox class="left" ng-click="getReportOrdersList()" label="##word.under_delivery##"
+                        ng-model="statusId.under_delivery"></i-checkbox>
+
+                    <i-checkbox class="left" ng-click="getReportOrdersList()" label="##word.accepted##"
+                        ng-model="statusId.accepted"></i-checkbox>
+
+                    <i-checkbox class="left" ng-click="getReportOrdersList()" label="##word.delivered##"
+                        ng-model="statusId.delivered"></i-checkbox>
+
+                    <span ng-show="busy">
+                        <span class="sr-only">Loading...</span>
+                    </span>
+                    <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
+                    <br>
+                </div>
+
+                <div class="row">
+
+                    <table class="table loaded center hover bold" id="t1">
+                        <tr>
+                            <th> ##word.date## </th>
+                            <th> ##word.customers_reference_number## </th>
+                            <th> ##word.car_type## </th>
+                            <th> ##word.car_name## </th>
+                            <th> ##word.Vehicle_model## </th>
+                            <th> ##word.vehicle_identifi## </th>
+                            <th> ##word.part_number## </th>
+                            <th> ##word.customer_name## </th>
+                            <th> ##word.status## </th>
+                            <th class="not-print"> ##word.actions## </th>
+                        </tr>
+
+                        <tr class="pointer" ng-repeat="c in list | orderBy : '-id'"
+                            ng-class="{bg_notifi : !c.notifi || c.notifi == null}">
+
+                            <td class="brown" ng-click="displayDetailsReportOrdersList(c)">
+                                {{c.date  | date:'dd - MM - yyyy'}} </td>
+                            <td ng-click="displayDetailsReportOrdersList(c)" class="blue bold"> {{c.code}} </td>
+
+                            <td ng-click="displayDetailsReportOrdersList(c)"> {{c.car_type.name_ar}} -
+                                {{c.car_type.name_en}} </td>
+                            <td ng-click="displayDetailsReportOrdersList(c)"> {{c.car_name.name_ar}} -
+                                {{c.car_name.name_en}} </td>
+                            <td ng-click="displayDetailsReportOrdersList(c)" class="blue"> {{c.Vehicle_model}} </td>
+                            <td ng-click="displayDetailsReportOrdersList(c)"> {{c.vehicle_identifi}} </td>
+                            <td ng-click="displayDetailsReportOrdersList(c)"> {{c.part_number}} </td>
+                            <td ng-click="displayDetailsReportOrdersList(c)"> {{c.customer_name}} </td>
+                            <td ng-click="displayDetailsReportOrdersList(c)" class="green"> {{c.status.##session.lang##}}
+                            </td>
+                            <td class="not-print">
+
+                                <i-button x-permissions="report_orders_edit || report_orders_manage"
+                                    ng-show="c.status.id == 1 || c.status.id == 5" label="##word.under_delivery##"
+                                    ng-click="c.status.id = 2 ; updateReportOrdersList(c)">
+                                </i-button>
+
+                                <i-button x-permissions="report_orders_edit || report_orders_manage"
+                                    ng-show="c.status.id == 2" label="##word.delivered##"
+                                    ng-click="c.status.id = 3 ; updateReportOrdersList(c)">
+                                </i-button>
+
+
+                                <i-button x-permissions="report_orders_edit || report_orders_manage"
+                                    ng-show="c.status.id == 3" label="##word.under_pricing##"
+                                    ng-click="c.status.id = 1 ; updateReportOrdersList(c)">
+                                </i-button>
+
+                                <!-- <i-button type="view" label="##word.messages##" onclick="site.showModal('#messageModal')" ></i-button> -->
+
+
+                                <i-button x-permissions="report_orders_delete || report_orders_manage" type="delete"
+                                    label="##word.delete##" ng-click="displayDeleteReportOrdersList(c)"></i-button>
+
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="row">
+                    <i-button x-permissions="report_orders_print || report_orders_manage" type="print"
+                        label="##word.print##" onclick="site.print('#t1')"></i-button>
+                    <i-button x-permissions="report_orders_export || report_orders_manage" type="export"
+                        label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'report_orders.xlsx')">
+                    </i-button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="report-orders/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp">
+
+<head x-import="head.html">
+    <style>
+        :root {
+
+            --x-background: url('/images/car_back.png') repeat fixed;
+        }
+
+        .bigLine {
+            border-bottom: 4px solid blue;
+            padding-bottom: 5px;
+            width: 110px;
+            border-radius: 15px;
+        }
+
+        .line {
+            border-bottom: 3px solid rgb(194, 194, 194);
+            padding-bottom: 5px;
+            width: 200px;
+            border-radius: 15px;
+        }
+
+        .post {
+            display: inline-grid;
+            border: 1px solid rgb(18, 18, 211);
+            background: #fff;
+            color: #000;
+            text-align: center;
+            line-height: 0.8;
+            width: auto;
+            height: auto;
+            margin: 10px;
+            padding: 17px;
+        }
+    </style>
+</head>
+
+<body class="##session.lang##">
+
+    <nav class="sitebar" x-import="sitebar/index.html" ng-controller="sitebar"></nav>
+     
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="customer_opinion">
+                <br>
+                <br>
+                <br>
+                <br>
+
+                <div class="row">
+                    <div class="col4"></div>
+                    <div class="col4 post">
+                        <br>
+                        <br>
+                        <br>
+                        <h1 class="blue bold center">##word.customer_opinion##</h1>
+
+                        <div ng-repeat="c in list">
+                            <br>
+                            <br>
+                            <i-button type="delete default" x-permissions="customer_opinion_delete || customer_opinion_manage" ng-click="deleteCustomerOpinion(c)">
+                            </i-button>
+
+                            <h2 class="darkGray ">{{c.full_name}}</h2>
+
+                            <br>
+                            <p class="brown">{{c.date | date : 'dd - MM - yyyy'}}</p>
+
+                            <div class="bigLine"></div>
+                            <br>
+                            <h3 class="bold" ng-show="c.vote == 'satisfied'">##word.satisfied##</h3>
+                            <h3 class="bold" ng-show="c.vote == 'acceptable'">##word.acceptable##</h3>
+
+                            <br>
+                            <p class="darkGray bold center">{{c.your_opinion}}</p>
+                            <br>
+                            <div class="center line"></div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+    <script x-import="customer-opinion/index.js"></script>
+
+</body>
+
+</html>

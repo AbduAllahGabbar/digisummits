@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+  <link rel="stylesheet" href="/css/mobile.css?v=##site.options.version##">
+</head>
+
+
+<body class="##session.lang##">
+  <nav class="sitebar" x-import="sitebar/index.html" ng-controller="sitebar"></nav>
+   
+
+  <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
+
+
+  <div id="main-layout" class="container center">
+   <!--    <img x-lang="ar" class="proshor" src="/images/icc_proshor_ar.jpg">
+      <img x-lang="en" class="proshor" src="/images/icc_proshor_en.jpg"> -->
+  </div>
+  <div x-import="scripts.html"></div>
+
+</body>
+
+</html>
