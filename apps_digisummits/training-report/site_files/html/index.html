@@ -31,19 +31,19 @@
               <div class="col">
 
                 <select class="form-select col" ng-model="search.partner" ng-options="s as (s.Name)   for s in entityPartnerList">
-                  <option value="" selected>##word.select## (##word.partner##)</option>
+                  <option value="" selected>##word.selected## (##word.partner##)</option>
                 </select>
               </div>
               <div class="col">
 
               <select class="form-select col" ng-model="search.sub_partner" ng-options="s as (s.Name)   for s in entitySubPartnerList">
-                <option value="" selected>##word.select## (##word.sub_partner##)</option>
+                <option value="" selected>##word.selected## (##word.sub_partner##)</option>
               </select>
             </div>
             <div class="col">
 
               <select class="form-select col" ng-model="search.trainer" ng-options="s as (s.Name)   for s in trainersList">
-                <option value="" selected>##word.select## (##word.trainer##)</option>
+                <option value="" selected>##word.selected## (##word.trainer##)</option>
               </select>
             </div>
 
@@ -54,13 +54,13 @@
               <div class="col">
 
                 <select class="form-select col" ng-model="search.training_type" ng-options="s as (s.Name)   for s in trainingTypesList">
-                  <option value="" selected>##word.select## (##word.training_type##)</option>
+                  <option value="" selected>##word.selected## (##word.training_type##)</option>
                 </select>
               </div>
                 <div class="col">
 
                   <select class="form-select col" ng-model="search.training_category" ng-options="s as (s.Name)   for s in trainingCategoryList">
-                    <option value="" selected>##word.select## (##word.training_category##)</option>
+                    <option value="" selected>##word.selected## (##word.training_category##)</option>
                   </select>
                 </div>
                 <div class="col">
@@ -106,6 +106,7 @@
               </tr>
             </tbody>
           </table>
+          <div ng-show="!trainingList.length" class="p-3 mb-2 fs-1  text-center bg-warning text-dark">##word.there_are_no_data##</div>
           <div class="container mt-3">
             <a type="button" class="btn btn-secondary col" onclick="export_to_xlsx('t1' , 'training_report.xlsx')">##word.export_to_excel##</a>
             <a type="button" class="btn btn-info col" onclick="site.print('#t1')">##word.print##</a>

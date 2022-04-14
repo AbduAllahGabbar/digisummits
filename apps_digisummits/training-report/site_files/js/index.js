@@ -56,7 +56,7 @@ app.controller('training_report', function ($scope, $http,$timeout) {
 
         site.hideModal('#message');
 
-      }, 2000);
+      }, 1500);
     }
   };
 
@@ -189,6 +189,9 @@ app.controller('training_report', function ($scope, $http,$timeout) {
         if (response.data.done) {
           $scope.trainingList = response.data.list;
           $scope.count = $scope.trainingList.length;
+        } else {
+          $scope.trainingList = [];
+          $scope.count = 0;
         }
       },
       function (err) {

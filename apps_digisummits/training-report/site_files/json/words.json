@@ -7,6 +7,7 @@
     {"name" : "national_id" , "en" : "NationalID" , "ar" : "الرقم القومي"},
     {"name" : "start_date" , "en" : "Start Date" , "ar" : "تاريخ البداية"},
     {"name" : "end_date" , "en" : "End Date" , "ar" : "تاريخ النهاية"},
+    {"name" : "selected" , "en" : "Selected" , "ar" : "إختيار"},
  
     {"name" : "training_type" , "en" : "Training type" , "ar" : "نوع التدريب"},
     {"name" : "training_report" , "en" : "Training Report" , "ar" : "تقرير التدريب"},
