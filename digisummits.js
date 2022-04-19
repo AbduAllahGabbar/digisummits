@@ -6,7 +6,10 @@ const site = require('isite')({
     theme: 'theme_paper',
     mongodb: {
         db: 'smart_code_digi',
-        limit: 100000
+        limit: 100000,
+        identity: {
+            enabled: !1,
+        },
     },
     security: {
         keys: ['e698f2679be5ba5c9c0b0031cb5b057c' , '9705a3a85c1b21118532fefcee840f99'],
@@ -36,9 +39,3 @@ site.addFeature('digisummits')
 
 
 site.run()
-
-
-// site.on('zk attend', attend=>{
-//     console.log(attend)
-// })
-
